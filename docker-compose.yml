@@ -1,0 +1,27 @@
+version: "3.5"
+
+services:
+  nut-server:
+    image: nut-server:latest
+    container_name: nut
+    ports:
+      - "3493:3493"
+    environment:
+      TZ: 'Europe/Vienna'
+    volumes:
+       - nut:/etc/nut
+    networks:
+       lan:
+         ipv4_address: 172.19.1.10
+#    restart: none
+    privileged: true
+
+networks:
+  lan:
+    external:
+      name: lan
+
+volumes:
+  nut:
+    external:
+      name: nut
